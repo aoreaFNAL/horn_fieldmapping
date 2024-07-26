@@ -19,7 +19,11 @@ Cs = 5 #Estimated current scaling factor
 Hs = 200#2V/T #Estimated magnetic field scaling factor
 iC = 200 #Ideal current of 200kA
 
-pulsesper = [11,11,11,11,11,10,10,10,10]
+#pulsesper = [11,11,11,11,11,10,10,10,10] #Pre-Capacitor Plane 1
+pulsesper = [10,10,11,11,11,11,11,11,11] #Post-Capacitor Plane 1
+#pulsesper = [10,10,11,11,11,11,11,11,11] #Post-Capacitor Plane 2
+#pulsesper = [11,11,11,11,11,11,11,11,11] #Post-Capacitor Plane 3
+pulsesper = [11,11,11,11,11,11,10,11,11] #Post-Capacitor Plane 4
 xs = np.arange(1,112,1)
 
 df = pd.read_excel('%s.xlsx'%flnm,header=None)
