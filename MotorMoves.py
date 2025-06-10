@@ -7,7 +7,7 @@ from os import system
 from datetime import datetime
 
 def move(dir_pin, step_pin, direction, nstp):
-    npulses = nstp #2000 steps per inch
+    npulses = nstp #2000 steps per inch, ~79 steps per mm
     pulse = 1
     if direction == 1:
         GPIO.output(dir_pin, GPIO.HIGH)
@@ -23,14 +23,14 @@ def move(dir_pin, step_pin, direction, nstp):
 
     GPIO.output(dir_pin, GPIO.LOW)
 
-##def read_position(X_pos, Y_pos, Z_pos):
-##    ref = 1.8 # ADC reference voltage
-##
-##    X = ref*float(ADC.read(X_pos))
-##    Y = ref*float(ADC.read(Y_pos))
-##    Z = ref*float(ADC.read(Z_pos))
-##    print("X: %.2f\tY: %.2f\tZ: %.2f"%(X,Y,Z))  
-##    return X, Y, Z
+def read_position(X_pos, Y_pos, Z_pos):
+    ref = 1.8 # ADC reference voltage
+
+    X = ref*float(ADC.read(X_pos))
+    Y = ref*float(ADC.read(Y_pos))
+    Z = ref*float(ADC.read(Z_pos))
+    print("X: %.2f\tY: %.2f\tZ: %.2f"%(X,Y,Z))  
+    return X, Y, Z
 
 ##def initialize_scope(IP_address):
 ##    ''' Initalize and connect to oscilliscope.'''
@@ -205,32 +205,32 @@ while 1:
     #variable = str(raw_input())
     if variable == 'f':
         print("Moving forward\n")
-        stp = input("How many steps?")
+        stp = int(input("How many steps?\t"))
         move(MotorZ_dir, MotorZ_step, 0, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
     elif variable == 'b':
         print("Moving backward\n")
-        stp = input("How many steps?")
+        stp = int(input("How many steps?\t"))
         move(MotorZ_dir, MotorZ_step, 1, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
     elif variable == 'r':
         print("Moving right\n")
-        stp = input("How many steps?")
+        stp = int(input("How many steps?\t"))
         move(MotorX_dir, MotorX_step, 1, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
     elif variable == 'l':
         print("Moving left\n")
-        stp = input("How many steps?")
+        stp = int(input("How many steps?\t"))
         move(MotorX_dir, MotorX_step, 0, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
     elif variable == 'u':
         print("Moving up\n")
-        stp = input("How many steps?")
+        stp = int(input("How many steps?\t"))
         move(MotorY_dir, MotorY_step, 1, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
     elif variable == 'd':
-        print("Moving down\n")input("How many steps?")
-        stp = input("How many steps?")
+        print("Moving down\n")
+        stp = int(input("How many steps?\t"))
         move(MotorY_dir, MotorY_step, 0, stp)
         X, Y, Z = read_position(X_pos, Y_pos, Z_pos)
 ##    elif variable == 'a':
